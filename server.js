@@ -3,6 +3,7 @@
 
 // init project
 var express = require('express');
+var os = require( 'os' );
 var app = express();
 
 // enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
@@ -25,8 +26,11 @@ app.get("/api/hello", function (req, res) {
 });
 
 app.get("/api/whoami", function(req, res){
+  var networkInterfaces = os.networkInterfaces();
+  res.send(networkInterfaces);
+  var ip = arr[1].address
   res.json({
-    "request": req
+    "ip": ip
   });
 });
 
