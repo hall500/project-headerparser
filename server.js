@@ -26,12 +26,11 @@ app.get("/api/hello", function (req, res) {
 });
 
 app.get("/api/whoami", function(req, res){
-  var networkInterfaces = os.networkInterfaces();
-  res.send(networkInterfaces);
-  var ip = arr[1].address
   res.json({
-    "ip": ip
-  });
+    "ipaddress": req.headers['x-forwarded-for'].split(",")[0],
+    "language": req.headers['accept-language'],
+    "software": req.headers['user-agent']
+  })
 });
 
 // listen for requests :)
